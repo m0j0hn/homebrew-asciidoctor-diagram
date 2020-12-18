@@ -1,4 +1,4 @@
-class Asciidoctor-diagram < Formula
+class AsciidoctorDiagram < Formula
   desc "Text processor and publishing toolchain for AsciiDoc"
   homepage "https://asciidoctor.org/"
   url "https://github.com/asciidoctor/asciidoctor/archive/v2.0.12.tar.gz"
