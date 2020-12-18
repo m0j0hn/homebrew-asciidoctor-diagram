@@ -1,8 +1,8 @@
 class AsciidoctorDiagram < Formula
-  desc "Text processor and publishing toolchain for AsciiDoc"
+  desc "Asciidoctor Diagram is a set of Asciidoctor extensions that enable you to add diagrams, which you describe using plain text, to your AsciiDoc document."
   homepage "https://asciidoctor.org/"
-  url "https://github.com/asciidoctor/asciidoctor/archive/v2.0.12.tar.gz"
-  sha256 "cd98047c68bf1074a7058b174c93a64f2bd39c2f33941398f6889c562ed5bce8"
+  url "https://github.com/asciidoctor/asciidoctor-diagram/archive/v1.5.10.tar.gz"
+  sha256 "77051e3b203a8782a229d330e9248703c22af992b80e17caf77ae79fb1c8aaf5"
   license "MIT"
 
   depends_on "ruby" if MacOS.version <= :sierra
@@ -137,12 +137,15 @@ class AsciidoctorDiagram < Formula
       system "gem", "install", r.cached_download, "--ignore-dependencies",
              "--no-document", "--install-dir", libexec
     end
-    system "gem", "build", "asciidoctor.gemspec"
-    system "gem", "install", "asciidoctor-#{version}.gem"
-    bin.install Dir[libexec/"bin/asciidoctor"]
-    bin.install Dir[libexec/"bin/asciidoctor-pdf"]
+    #system "gem", "build", "asciidoctor.gemspec"
+    #system "gem", "install", "asciidoctor-#{version}.gem"
+    system "gem", "build", "asciidoctor-diagram.gemspec"
+    system "gem", "install", "asciidoctor-diagram-#{version}.gem"
+    #bin.install Dir[libexec/"bin/asciidoctor"]
+    #bin.install Dir[libexec/"bin/asciidoctor-pdf"]
+    bin.install Dir[libexec/"bin/*"]
     bin.env_script_all_files(libexec/"bin", GEM_HOME: ENV["GEM_HOME"])
-    man1.install_symlink "#{libexec}/gems/asciidoctor-#{version}/man/asciidoctor.1" => "asciidoctor.1"
+    #man1.install_symlink "#{libexec}/gems/asciidoctor-#{version}/man/asciidoctor.1" => "asciidoctor.1"
   end
 
   test do
